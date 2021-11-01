@@ -1,0 +1,2 @@
+https://keras.io/examples/vision/learnable_resizer/
+https://github.com/sayakpaul/Learnable-Image-Resizing
