@@ -32,6 +32,7 @@ class SegmentationDataset:
         """
         Creates a list of tuple from the image and segmentation filenames using the id extracted from their filenames
         using the file_id_regex to create pairs
+        :return: [(image_path, segmentation_path)]
         """
         images_filenames, segmentation_filenames = self._list_file_names()
 
@@ -65,7 +66,7 @@ class SegmentationDataset:
 
     def _extract_indexed_file_id(self, filenames: list[str]) -> list[tuple[str, int]]:
         """
-
+        Extract the file ids from the file paths and add the current index of the element to the tuple
         :param filenames: list of file paths
         :return: list of (file_id, index)
         """
