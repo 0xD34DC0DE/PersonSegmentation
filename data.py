@@ -6,7 +6,7 @@ from os import path
 class SegmentationDataset:
 
     def __init__(self, images_path: str, segmentations_path: str, file_id_regex: str, batch_size: int = 8,
-                 image_size: tuple = (64, 64)):
+                 image_size: tuple = (64, 64), resize_interpolation='bicubic', resize_fill_mode='reflect'):
         """
         Creates a binary segmentation dataset from images and their matching segmentations
 
@@ -21,6 +21,8 @@ class SegmentationDataset:
         self.batch_size = batch_size
         self.image_size = image_size
         self.file_id_regex = re.compile(file_id_regex)
+        self.resize_interpolation = resize_interpolation
+
         self.image_segmentation_filepath_pairs = self._group_images_to_segmentations()
         print("yay")
 
