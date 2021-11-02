@@ -12,14 +12,10 @@ class DirectoryIterator(Producer):
 
         self._directory_files = glob(directory + "*")
 
-        super().__init__(self, self._directory_files)
+        super().__init__(self, self._directory_files[:3000])
 
     @staticmethod
     def _sanitize_path(directory: str) -> str:
         if not directory[-1] == '\\' or not directory[-1] == '/':
             directory += '/'
         return directory
-
-    @staticmethod
-    def _produce_item(filepath: str) -> np.ndarray:
-        return tf.image.decode_jpeg(tf.io.read_file(filepath)).numpy
