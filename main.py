@@ -2,7 +2,10 @@ import time
 from dataset.data import SegmentationDataset
 import matplotlib.pyplot as plt
 import statistic_util
+import tensorflow as tf
+from statistic_util.BinaryRatio import BinaryRatio
 from statistic_util.DirectoryIterator import DirectoryIterator
+from statistic_util.LoadImage import LoadImage
 
 
 def benchmark(dataset, num_epochs=1):
@@ -21,14 +24,18 @@ def benchmark(dataset, num_epochs=1):
 
 
 if __name__ == '__main__':
-    # msg = tf.constant('TensorFlow 2.0 Hello World')
-    # tf.print(msg)
+    tf.print(tf.__version__)
 
     images_directory = "C:/Users/0xD34DC0DE/Pictures/ASMLGen/output_test/images/person/"
     segmentations_directory = "C:/Users/0xD34DC0DE/Pictures/ASMLGen/output_test/annotations/person/"
 
-    dir_iter = DirectoryIterator(images_directory)
+    dir_iter = DirectoryIterator(images_directory).map(LoadImage()).map(BinaryRatio())
     print(dir_iter.__dir__())
+    start_time = time.perf_counter()
+    result = dir_iter.get_result()
+    print("Execution time:", time.perf_counter() - start_time)
+    print(len(result))
+
     # i = 0
     # start_time = time.perf_counter()
     # for img in dir_iter:
