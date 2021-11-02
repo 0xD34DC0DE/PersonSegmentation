@@ -29,13 +29,13 @@ if __name__ == '__main__':
 
     dir_iter = DirectoryIterator(images_directory)
     print(dir_iter.__dir__())
-    i = 0
-    start_time = time.perf_counter()
-    for img in dir_iter:
-        i += 1
-        if i % 1000 == 0:
-            print(i)
-    print("Execution time:", time.perf_counter() - start_time)
+    # i = 0
+    # start_time = time.perf_counter()
+    # for img in dir_iter:
+    #     i += 1
+    #     if i % 1000 == 0:
+    #         print(i)
+    # print("Execution time:", time.perf_counter() - start_time)
     # dataset = SegmentationDataset(images_directory, segmentations_directory,
     #                               file_id_regex="(\\d*)\\w*\\.").get_dataset()
     # print("benchmarking")
